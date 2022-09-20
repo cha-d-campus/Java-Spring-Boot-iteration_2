@@ -3,9 +3,11 @@ package com.example.thymeleafTestApplication.thymeleafTestApplication.web.contro
 import com.example.thymeleafTestApplication.thymeleafTestApplication.model.Character;
 import com.example.thymeleafTestApplication.thymeleafTestApplication.model.CharacterForm;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +60,7 @@ public class CharacterController {
 
     @RequestMapping(value = {"/characters/addcharacter"}, method = RequestMethod.POST)
     public String saveCharacter(Model model, //
-                                @ModelAttribute("characterForm") CharacterForm characterForm) {
+            @ModelAttribute("characterForm") CharacterForm characterForm) {
         String name = characterForm.getName();
         String type = characterForm.getType();
         int lifepoints = characterForm.getLifepoints();
@@ -86,5 +88,19 @@ public class CharacterController {
 
             return "redirect:/characters";
         }
+    }
+
+    @RequestMapping("/characters/{id}")
+    public String displayACharacter(Model model, @PathVariable int id) {
+        Character character = characterList
+                .stream()
+                .filter(x -> id == x.getId())
+                .findFirst()
+                .orElse(null);
+        if(character == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        model.addAttribute("character", character);
+        return "myCharacter";
     }
 }
