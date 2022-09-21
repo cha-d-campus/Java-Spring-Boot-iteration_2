@@ -3,30 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Liste des personnages</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
 </head>
 <body>
-<h1>Liste des personnages</h1>
-<a href="characters/addcharacter">Ajouter un personnage</a>
-<br/><br/>
-<div>
-    <table>
+<h1 class="mt-2 mb-5">Liste des personnages</h1>
+
+<div class="d-flex justify-content-center">
+    <table class="table table-dark table-striped mb-3" style="width: 80rem;">
+        <thead>
         <tr>
-            <th>Nom</th>
-            <th>Type</th>
-            <th>Points de vie</th>
+            <th class="text-center">Image</th>
+            <th class="text-center">Nom</th>
+            <th class="text-center">Type</th>
+            <th class="text-center">Points de vie</th>
+            <th></th>
         </tr>
-        <tr th:each ="character : ${characterList}">
-            <td th:utext="'Hi, ' +${character.name}"></td>
-            <td th:utext="${character.type}"></td>
-            <td th:utext="${character.lifepoints}"></td>
+        </thead>
+        <tbody>
+        <tr th:each="character : ${characterList}">
+            <td class="d-flex justify-content-center"><img style="height: auto; width:120px;" th:src="'/img/'+${character.image}" alt="..."></td>
+            <td class="text-center" th:utext="${character.name}"></td>
+            <td class="text-center" th:utext="${character.type}"></td>
+            <td class="text-center" th:utext="${character.lifepoints}"></td>
+            <td class="d-flex justify-content-center" style="height: auto"><a class="btn btn-dark text-center" th:href="'/characters/'+${character.id}">Voir la fiche</a></td>
         </tr>
-<!--        <tr>-->
-<!--            <td>...</td>-->
-<!--            <td>...</td>-->
-<!--            <td>...</td>-->
-<!--        </tr>-->
+        </tbody>
     </table>
+</div>
+
+<div class="d-flex justify-content-center">
+    <a class="btn btn-dark" th:href="@{/characters/addcharacter}">Ajouter un personnage</a>
 </div>
 
 </body>

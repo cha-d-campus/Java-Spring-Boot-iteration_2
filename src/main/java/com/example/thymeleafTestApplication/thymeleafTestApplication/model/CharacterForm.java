@@ -6,14 +6,19 @@ public class CharacterForm {
     private String type;
     private int lifepoints;
 
+    private int maxlifepoints;
+
+    private String image;
+
     public CharacterForm() {
     }
 
-    public CharacterForm(int id, String name, String type, int lifepoints) {
+    public CharacterForm(int id, String name, String type, int lifepoints, String image) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.lifepoints = lifepoints;
+        this.image = image;
     }
 
     public int getId() {
@@ -32,6 +37,10 @@ public class CharacterForm {
         return lifepoints;
     }
 
+    public String getImage() {
+        return image;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -46,5 +55,9 @@ public class CharacterForm {
 
     public void setLifepoints(int lifepoints) {
         this.lifepoints = lifepoints;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

@@ -35,6 +35,9 @@
     </div>
     <br/>
     Points de vie :
+    <select th:each="i,state : ${10}" class="form-select" aria-label="Default select example">
+        <option th:value="${state.count}" th:utext="${state.count}"></option>
+    </select>
     <input type="text" th:field="*{lifepoints}" />
     <div th:if="${errorMessageEmptyLifepoints}" th:utext="${errorMessageEmptyLifepoints}"
          style="color:red;font-style:italic;">

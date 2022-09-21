@@ -11,17 +11,18 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 public class CharacterController {
     private static List<Character> characterList = new ArrayList<Character>();
 
     static {
-        characterList.add(new Character(5, "Lux", "Magicien", 4));
-        characterList.add(new Character(2, "Garen", "Guerrier", 9));
-        characterList.add(new Character(9, "Veigar", "Magicien", 5));
-        characterList.add(new Character(9, "Morgana", "Magicien", 6));
-        characterList.add(new Character(42, "Sett", "Guerrier", 8));
+        characterList.add(new Character(6, "Lux", "Magicien", 5, "Lux_0.jpg"));
+        characterList.add(new Character(2, "Garen", "Guerrier", 9, "Garen_0.jpg"));
+        characterList.add(new Character(9, "Veigar", "Magicien", 5, "Veigar_0.jpg"));
+        characterList.add(new Character(10, "Morgana", "Magicien", 6, "Morgana_0.jpg"));
+        characterList.add(new Character(42, "Sett", "Guerrier", 8, "Sett_0.jpg"));
     }
 
     @Value("${welcome.message}")
@@ -63,7 +64,18 @@ public class CharacterController {
             @ModelAttribute("characterForm") CharacterForm characterForm) {
         String name = characterForm.getName();
         String type = characterForm.getType();
+        String image = characterForm.getImage();
         int lifepoints = characterForm.getLifepoints();
+        Random randId = new Random();
+        int upperbound = 500;
+        boolean idExist = characterList
+                .stream()
+                .map(Character::getId)
+                .anyMatch(randId::equals);
+        if (idExist) {
+            return "addCharacter";
+        }
+        int id = randId.nextInt(upperbound);
 
         boolean nameIsExist = characterList
                 .stream()
@@ -72,7 +84,7 @@ public class CharacterController {
         if (nameIsExist) {
             model.addAttribute("errorMessageSameName", errorMessageSameName);
             return "addCharacter";
-        } else if (name == null || name.isEmpty()) {
+        } else if (name.isEmpty()) {
             model.addAttribute("errorMessageEmptyName", errorMessageEmptyName);
             return "addCharacter";
         }else if (type == null || type.isEmpty()) {
@@ -82,7 +94,7 @@ public class CharacterController {
             model.addAttribute("errorMessageEmptyLifepoints", errorMessageEmptyLifepoints);
             return "addCharacter";
         } else {
-            Character newCharacter = new Character(50, name, type, lifepoints);
+            Character newCharacter = new Character(id, name, type, lifepoints, image);
 
             characterList.add(newCharacter);
 

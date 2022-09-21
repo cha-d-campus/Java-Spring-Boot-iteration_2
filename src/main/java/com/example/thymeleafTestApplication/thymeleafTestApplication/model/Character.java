@@ -6,14 +6,16 @@ public class Character {
     private String type;
     private int lifepoints;
 
+    private String image;
     public Character() {
     }
 
-    public Character(int id, String name, String type, int lifepoints) {
+    public Character(int id, String name, String type, int lifepoints, String image) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.lifepoints = lifepoints;
+        this.image = image;
     }
 
     public int getId() {
@@ -32,6 +34,10 @@ public class Character {
         return lifepoints;
     }
 
+    public String getImage() {
+        return image;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -46,6 +52,10 @@ public class Character {
 
     public void setLifepoints(int lifepoints) {
         this.lifepoints = lifepoints;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override

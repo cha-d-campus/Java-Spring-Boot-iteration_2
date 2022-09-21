@@ -1,17 +1,31 @@
+body {
+    background-color: black;
+}
+
+.banner {
+    background-image: url("../img/league-of-legends-champions.jpg");
+    background-size: cover;
+    /*background-position: center;*/
+    background-position-y: 400px;
+    height: 100px;
+    width: 100%;
+}
+
 h1 {
-    color: #6d0068;
+    color: #727272;
+    text-align: center;
 }
 
 h2 {
-    color:#FF0000;
+    color: #727272;
+    text-align: center;
 }
 
 table {
     border-collapse: collapse;
-    border: black solid 2px;
 }
 
-table th, table td {
-    padding: 5px;
-    border: black solid 1px;
+.table>:not(caption)>*>* {
+    padding: 0.5rem 0.5rem;
+    border-bottom-width: 0px;
 }
