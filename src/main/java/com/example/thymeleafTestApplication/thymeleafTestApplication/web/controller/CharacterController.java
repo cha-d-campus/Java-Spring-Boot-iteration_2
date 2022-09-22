@@ -15,6 +15,10 @@ import java.util.Random;
 
 @Controller
 public class CharacterController {
+
+    private static int tabPV[] = new int [11];
+
+    private static String tabType[] = new String[] {"Magicien", "Guerrier"};
     private static List<Character> characterList = new ArrayList<Character>();
 
     static {
@@ -56,6 +60,8 @@ public class CharacterController {
     public String showAddCharacterPage(Model model) {
         CharacterForm characterForm = new CharacterForm();
         model.addAttribute("characterForm", characterForm);
+        model.addAttribute("tabPV", tabPV);
+        model.addAttribute("tabType", tabType);
         return "addCharacter";
     }
 
@@ -64,7 +70,7 @@ public class CharacterController {
             @ModelAttribute("characterForm") CharacterForm characterForm) {
         String name = characterForm.getName();
         String type = characterForm.getType();
-        String image = characterForm.getImage();
+        String image = characterForm.getName()+"_0.jpg";
         int lifepoints = characterForm.getLifepoints();
         Random randId = new Random();
         int upperbound = 500;
@@ -83,15 +89,23 @@ public class CharacterController {
                 .anyMatch(name::equals);
         if (nameIsExist) {
             model.addAttribute("errorMessageSameName", errorMessageSameName);
+            model.addAttribute("tabPV", tabPV);
+            model.addAttribute("tabType", tabType);
             return "addCharacter";
         } else if (name.isEmpty()) {
             model.addAttribute("errorMessageEmptyName", errorMessageEmptyName);
+            model.addAttribute("tabPV", tabPV);
+            model.addAttribute("tabType", tabType);
             return "addCharacter";
         }else if (type == null || type.isEmpty()) {
             model.addAttribute("errorMessageEmptyType", errorMessageEmptyType);
+            model.addAttribute("tabPV", tabPV);
+            model.addAttribute("tabType", tabType);
             return "addCharacter";
         } else if (lifepoints == 0) {
             model.addAttribute("errorMessageEmptyLifepoints", errorMessageEmptyLifepoints);
+            model.addAttribute("tabPV", tabPV);
+            model.addAttribute("tabType", tabType);
             return "addCharacter";
         } else {
             Character newCharacter = new Character(id, name, type, lifepoints, image);

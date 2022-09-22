@@ -56,7 +56,6 @@ public class CharacterForm {
     public void setLifepoints(int lifepoints) {
         this.lifepoints = lifepoints;
     }
-
     public void setImage(String image) {
         this.image = image;
     }

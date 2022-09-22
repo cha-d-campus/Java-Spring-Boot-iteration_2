@@ -53,7 +53,6 @@ public class Character {
     public void setLifepoints(int lifepoints) {
         this.lifepoints = lifepoints;
     }
-
     public void setImage(String image) {
         this.image = image;
     }
@@ -64,7 +63,8 @@ public class Character {
                 "id=" + id +
                 ", nom='" + name + '\'' +
                 ", type='" + type + '\'' +
-                ", points de vie" + lifepoints +
+                ", points de vie'" + lifepoints +
+                ", image" + image +
                 '}';
     }
 }

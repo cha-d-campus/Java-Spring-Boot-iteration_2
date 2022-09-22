@@ -11,16 +11,11 @@ body {
     width: 100%;
 }
 
-#h1-index {
+h1 {
     color: #4efff6;
     text-align: center;
     padding-top: 260px;
     font-size: 5rem;
-}
-
-h1 {
-    color: #b9acac;
-    text-align: center;
 }
 
 h2 {
@@ -37,22 +32,11 @@ h2 {
     width: 100%;
 }
 
-td>a:hover {
-    color: #ababab;
+table {
+    border-collapse: collapse;
 }
 
-td>a {
-    color: #e3e3e3;
-    text-decoration: none;
+.table>:not(caption)>*>* {
+    padding: 0.5rem 0.5rem;
+    border-bottom-width: 0px;
 }
-/*table {*/
-/*    border-collapse: collapse;*/
-/*}*/
-
-/*.table>:not(caption)>*>* {*/
-/*    padding: 0.5rem 0.5rem;*/
-/*    border-bottom-width: 0px;*/
-/*}*/
-
-/*table-btn {*/
-/*}*/

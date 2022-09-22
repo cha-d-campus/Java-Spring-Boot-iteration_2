@@ -8,10 +8,22 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
 </head>
 <body>
+<div class="banner"></div>
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">
+            <img src="/img/Logo-League-of-Legends.png" alt="Logo" width="60"  class="d-inline-block align-text-top">
+        </a>
+        <div class="d-flex">
+            <a class="btn btn-dark" th:href="@{/characters}">Voir la liste de héros</a>
+            <a class="btn btn-dark" th:href="@{/characters/addcharacter}">Ajouter un héro</a>
+        </div>
+    </div>
+</nav>
 <h1 class="mt-2 mb-5">Liste des personnages</h1>
 
 <div class="d-flex justify-content-center">
-    <table class="table table-dark table-striped mb-3" style="width: 80rem;">
+    <table class="table table-dark table-hover mb-3" style="width: 80rem;">
         <thead>
         <tr>
             <th class="text-center">Image</th>
@@ -23,11 +35,15 @@
         </thead>
         <tbody>
         <tr th:each="character : ${characterList}">
-            <td class="d-flex justify-content-center"><img style="height: auto; width:120px;" th:src="'/img/'+${character.image}" alt="..."></td>
-            <td class="text-center" th:utext="${character.name}"></td>
-            <td class="text-center" th:utext="${character.type}"></td>
-            <td class="text-center" th:utext="${character.lifepoints}"></td>
-            <td class="d-flex justify-content-center" style="height: auto"><a class="btn btn-dark text-center" th:href="'/characters/'+${character.id}">Voir la fiche</a></td>
+            <td class="d-flex justify-content-center">
+                <img style="height: auto; width:120px;" th:src="'/img/'+${character.image}" alt="...">
+            </td>
+            <td class="text-center align-items-center align-middle" th:utext="${character.name}"></td>
+            <td class="text-center align-items-center align-middle" th:utext="${character.type}"></td>
+            <td class="text-center align-items-center align-middle" th:utext="${character.lifepoints}"></td>
+            <td class="text-center align-items-center align-middle">
+                    <a class=""  th:href="'/characters/'+${character.id}">Voir la fiche</a>
+            </td>
         </tr>
         </tbody>
     </table>
