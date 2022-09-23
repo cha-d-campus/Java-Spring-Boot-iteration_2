@@ -59,4 +59,15 @@ public class CharacterForm {
     public void setImage(String image) {
         this.image = image;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "\"id\":" + '\"'+ id + '\"' +
+                ",\"name\":'" + '\"'+ name + '\"' +
+                ",\"type\":'" + '\"'+ type + '\"' +
+                ",\"lifpoints\":'" + lifepoints + '\"'+
+                ", \"image\":'"+ '\"' + image + '\"'+
+                '}';
+    }
 }

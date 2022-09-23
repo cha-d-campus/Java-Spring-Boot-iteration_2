@@ -59,12 +59,12 @@ public class Character {
 
     @Override
     public String toString() {
-        return "Character{" +
-                "id=" + id +
-                ", nom='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", points de vie'" + lifepoints +
-                ", image" + image +
+        return "{" +
+                "\"id\":" +  id +
+                ",\"name\":" + '\"'+ name + '\"' +
+                ",\"type\":" + '\"'+ type + '\"' +
+                ",\"lifpoints\":" + lifepoints +
+                ", \"image\":"+ '\"' + image + '\"'+
                 '}';
     }
 }
