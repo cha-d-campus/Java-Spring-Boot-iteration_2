@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajouter un personnage</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<div class="banner"></div>
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" th:href="@{/}">
+      <img src="/img/Logo-League-of-Legends.png" alt="Logo" width="60" class="d-inline-block align-text-top">
+    </a>
+    <div class="d-flex">
+      <a class="btn btn-dark" th:href="@{/characters}">Voir la liste de héros</a>
+      <a class="btn btn-dark" th:href="@{/characters/addcharacter}">Ajouter un héro</a>
+    </div>
+  </div>
+</nav>
+
+<h1 th:utext="'Modifier les caractéristique de '+${character.name}"></h1>
+
+<!--
+   In Thymeleaf the equivalent of
+   JSP's ${pageContext.request.contextPath}/edit.html
+   would be @{/edit.html}
+   -->
+
+<div class="d-flex justify-content-center mt-5">
+  <form th:action="@{'/characters/'}"
+        th:object="${character}" th:method="PUT">
+    <label class="form-label mt-3" style="color: aliceblue" th:placeholder="${character.name}">Nom:</label>
+    <input class="form-control" type="text" th:field="*{name}"/>
+    <div th:if="${errorMessageSameName}" th:utext="${errorMessageSameName}"
+         style="color:red;font-style:italic;">
+      ...
+    </div>
+    <div th:if="${errorMessageEmptyName}" th:utext="${errorMessageEmptyName}"
+         style="color:red;font-style:italic;">
+      ...
+    </div>
+
+    <label class="form-label mt-3" style="color: aliceblue">Type:</label>
+    <select th:field="*{type}" class="form-select" aria-label="type">
+      <option value="">Choisir un type</option>
+      <option th:each="type, state : ${tabType}"
+              th:value="${type}"
+              th:utext="${type}">
+      </option>
+    </select>
+
+    <div th:if="${errorMessageEmptyType}" th:utext="${errorMessageEmptyType}"
+         style="color:red;font-style:italic;">
+      ...
+    </div>
+
+    <label class="form-label mt-3" style="color: aliceblue">Points de vie :</label>
+    <select th:field="*{lifepoints}" class="form-select" aria-label="life points">
+      <option th:each="PV, state : ${tabPV}"
+              th:value="${state.index}"
+              th:utext="${state.index}">
+      </option>
+    </select>
+
+    <div th:if="${errorMessageEmptyLifepoints}" th:utext="${errorMessageEmptyLifepoints}"
+         style="color:red;font-style:italic;">
+      ...
+    </div>
+
+    <!--    <label class="form-label mt-3" style="color: aliceblue">Image:</label>-->
+    <!--    <input class="form-control" type="text"  th:field="*{image}" />-->
+
+    <input class="btn btn-dark mt-5" type="submit"/>
+    Modifier</input>
+  </form>
+</div>
+
+<!-- Check if errorMessage is not null and not empty -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

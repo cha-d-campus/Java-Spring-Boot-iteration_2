@@ -42,7 +42,17 @@
             <td class="text-center align-items-center align-middle" th:utext="${character.type}"></td>
             <td class="text-center align-items-center align-middle" th:utext="${character.lifepoints}"></td>
             <td class="text-center align-items-center align-middle">
-                    <a class=""  th:href="'/characters/'+${character.id}">Voir la fiche</a>
+                <div class="d-flex justify-content-around">
+                    <form th:action="'/characters/'+${character.id}">
+                        <button class="btn btn-secondary" type="submit">Voir la fiche</button>
+                    </form>
+                    <form th:action="'/characters/edit/'+${character.id}">
+                        <button class="btn btn-success" type="submit">Modifier</button>
+                    </form>
+                    <form th:action="'/characters/'+${character.id}" th:method="delete">
+                        <button class="btn btn-danger" type="submit">Supprimer</button>
+                    </form>
+                </div>
             </td>
         </tr>
         </tbody>

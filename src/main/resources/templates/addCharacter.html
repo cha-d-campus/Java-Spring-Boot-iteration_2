@@ -31,7 +31,7 @@
 
 <div class="d-flex justify-content-center mt-5">
     <form th:action="@{/characters/addcharacter}"
-          th:object="${characterForm}" method="POST">
+          th:object="${characterForm}" th:method="POST">
         <label class="form-label mt-3" style="color: aliceblue">Nom:</label>
         <input class="form-control" type="text" th:field="*{name}"/>
         <div th:if="${errorMessageSameName}" th:utext="${errorMessageSameName}"

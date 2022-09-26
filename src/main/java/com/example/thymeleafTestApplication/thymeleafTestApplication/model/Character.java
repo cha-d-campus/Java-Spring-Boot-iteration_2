@@ -10,6 +10,13 @@ public class Character {
     public Character() {
     }
 
+    public Character(int id, String name, String type, int lifepoints) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.lifepoints = lifepoints;
+    }
+
     public Character(int id, String name, String type, int lifepoints, String image) {
         this.id = id;
         this.name = name;
