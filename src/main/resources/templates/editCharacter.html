@@ -30,7 +30,7 @@
    -->
 
 <div class="d-flex justify-content-center mt-5">
-  <form th:action="@{'/characters/'}"
+  <form th:action="@{'/characters/edit/'+${character.id}}"
         th:object="${character}" th:method="PUT">
     <label class="form-label mt-3" style="color: aliceblue" th:placeholder="${character.name}">Nom:</label>
     <input class="form-control" type="text" th:field="*{name}"/>

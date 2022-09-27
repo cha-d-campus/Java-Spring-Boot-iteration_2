@@ -134,8 +134,10 @@ public class CharacterController {
         model.addAttribute("tabType", tabType);
         return "editCharacter";
     }
-  @PutMapping("/characters")
-    public String editCharacter(@ModelAttribute Character character) {
+  @PutMapping("/characters/edit/{id}")
+    public String editCharacter(@PathVariable int id, @ModelAttribute Character character) {
+        character.setId(id);
+        character.setImage(character.getName()+"_0.jpg");
       System.out.println("hey hoooo");
       restTemplate.put(URL_CHARACTERS, character);
 
